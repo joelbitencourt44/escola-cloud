@@ -1,0 +1,10 @@
+escola-cloud/
+│
+├── index.html          (página inicial)
+├── login.html          (tela de login)
+├── dashboard-dono.html (seu painel supremo)
+├── style.css           (estilos)
+├── script.js           (código JavaScript)
+│
+└── assets/
+    └── imagens/        (logo, fotos, etc.)

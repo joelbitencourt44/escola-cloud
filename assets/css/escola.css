@@ -1,0 +1,143 @@
+/* ============================================
+   ESCOLA CLOUD - ESCOLA.CSS
+   Página Pública da Escola
+   ============================================ */
+
+/* Fundo da página pública */
+.public-body {
+  background: var(--light);
+}
+
+/* Header da página pública */
+.public-header {
+  background: var(--white);
+  padding: var(--spacing-4) var(--spacing-6);
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.public-logo {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--spacing-3);
+  font-size: 3rem;
+  color: white;
+}
+
+.public-nome {
+  font-size: 1.75rem;
+  color: var(--black);
+  margin-bottom: var(--spacing-1);
+}
+
+.public-endereco {
+  font-size: 0.875rem;
+  color: var(--gray);
+}
+
+/* Botão login público */
+.btn-login-publico {
+  position: fixed;
+  top: var(--spacing-4);
+  right: var(--spacing-4);
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: var(--spacing-2) var(--spacing-4);
+  border-radius: var(--radius);
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* Galeria pública */
+.galeria-publica {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-4);
+  margin: var(--spacing-6) 0;
+}
+
+.galeria-publica .foto {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* Calendário público */
+.calendario-publico {
+  margin: var(--spacing-6) 0;
+}
+
+/* Eventos públicos */
+.evento-publico {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.evento-data-publico {
+  background: var(--primary);
+  color: white;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 70px;
+  text-align: center;
+}
+
+/* Mural público */
+.mural-publico {
+  background: var(--light-100);
+  border-radius: var(--radius);
+  padding: var(--spacing-4);
+  margin: var(--spacing-6) 0;
+}
+
+.recado-publico {
+  padding: var(--spacing-2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.recado-publico:last-child {
+  border-bottom: none;
+}
+
+/* Grupos WhatsApp públicos */
+.grupo-publico {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.btn-grupo-publico {
+  background: #25d366;
+  color: white;
+  border: none;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.75rem;
+}
+
+/* Rodapé */
+.footer-publico {
+  text-align: center;
+  padding: var(--spacing-4);
+  color: var(--gray);
+  font-size: 0.75rem;
+  border-top: 1px solid var(--border);
+  margin-top: var(--spacing-6);
+}

@@ -1,0 +1,70 @@
+/* ============================================
+   ESCOLA CLOUD - ADMIN.CSS
+   Painel do Dono (ESCOLA CLOUD)
+   ============================================ */
+
+/* Fundo específico para o admin */
+.admin-body {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+/* Cards do admin */
+.admin-card {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+}
+
+.admin-card h3 {
+  color: white;
+}
+
+/* Tabela de escolas */
+.escola-row {
+  transition: background var(--transition-fast);
+}
+
+.escola-row:hover {
+  background: var(--light-100);
+}
+
+.link-escola {
+  font-family: monospace;
+  font-size: 0.875rem;
+  color: var(--primary);
+}
+
+/* Formulário de criar escola */
+.form-criar-escola {
+  border: 2px dashed var(--primary);
+  background: var(--light-100);
+}
+
+/* Modal de escola */
+.modal-logo {
+  text-align: center;
+  margin-bottom: var(--spacing-4);
+}
+
+.modal-logo div {
+  width: 80px;
+  height: 80px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 2.5rem;
+  color: white;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-2) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.info-row strong {
+  color: var(--gray);
+}

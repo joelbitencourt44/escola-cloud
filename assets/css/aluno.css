@@ -1,0 +1,109 @@
+/* ============================================
+   ESCOLA CLOUD - ALUNO.CSS
+   Portal do Aluno
+   ============================================ */
+
+/* Dashboard do aluno */
+.aluno-dashboard {
+  background: linear-gradient(135deg, var(--success) 0%, var(--primary) 100%);
+}
+
+.aluno-dashboard h3 {
+  color: white;
+}
+
+/* Cards do aluno */
+.card-nota {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: var(--spacing-3);
+  text-align: center;
+}
+
+.card-nota .nota-valor {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.card-nota .nota-disciplina {
+  font-size: 0.75rem;
+  color: var(--gray);
+}
+
+/* Lista de atividades */
+.atividade-pendente {
+  background: var(--warning-light);
+  border-left: 4px solid var(--warning);
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  border-radius: var(--radius);
+}
+
+.atividade-entregue {
+  background: var(--success-light);
+  border-left: 4px solid var(--success);
+}
+
+.atividade-titulo {
+  font-weight: 600;
+}
+
+.atividade-prazo {
+  font-size: 0.7rem;
+  color: var(--gray);
+  margin-top: var(--spacing-1);
+}
+
+/* Botão responder */
+.btn-responder {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 0.75rem;
+  margin-top: var(--spacing-2);
+}
+
+/* Extrato financeiro */
+.extrato-item {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.extrato-mes {
+  font-weight: 600;
+}
+
+.extrato-valor {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.extrato-status-pago {
+  color: var(--success);
+}
+
+.extrato-status-pendente {
+  color: var(--warning);
+}
+
+/* Feedback */
+.feedback-form {
+  background: var(--light-100);
+  border-radius: var(--radius);
+  padding: var(--spacing-3);
+}
+
+/* Calendário do aluno */
+.evento-proximo {
+  background: var(--info-light);
+  border-left: 4px solid var(--info);
+  padding: var(--spacing-2);
+  margin-bottom: var(--spacing-2);
+  border-radius: var(--radius);
+}

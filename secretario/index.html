@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Secretário | Escola Cloud</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Escola Cloud" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-mini">📋</div>
+        <div class="info-escola">
+          <h2 id="escolaNome">Carregando...</h2>
+          <p>Painel do Secretário</p>
+        </div>
+      </div>
+      <div class="user-area">
+        <span class="user-name" id="secNome">Carregando...</span
+        ><button class="btn-sair" onclick="logout()">Sair</button>
+      </div>
+    </div>
+    <div class="menu-container">
+      <div class="menu">
+        <button class="menu-btn active" data-menu="dashboard">
+          📊 Dashboard
+        </button>
+        <button class="menu-btn" data-menu="notas">📝 Lançar Notas</button>
+        <button class="menu-btn" data-menu="alunos">👨‍🎓 Alunos</button>
+        <button class="menu-btn" data-menu="comunicados">📨 Comunicados</button>
+      </div>
+    </div>
+    <div class="content">
+      <div id="menu-dashboard">
+        <div class="card-dashboard">
+          <div class="card">
+            <h3 id="totalAlunos">0</h3>
+            <p>👨‍🎓 Alunos</p>
+          </div>
+        </div>
+      </div>
+      <div id="menu-notas" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Lançar Nota</h3>
+          <div class="grid-2">
+            <select id="notaAluno"></select
+            ><input
+              type="text"
+              id="notaDisciplina"
+              placeholder="Disciplina"
+            /><input
+              type="number"
+              id="notaValor"
+              step="0.1"
+              placeholder="Nota"
+            />
+          </div>
+          <button class="btn-salvar" onclick="lancarNota()">Lançar</button>
+        </div>
+      </div>
+      <div id="menu-alunos" class="hidden">
+        <div class="tabela-container">
+          <h3>📋 Alunos</h3>
+          <div id="listaAlunos"></div>
+        </div>
+      </div>
+      <div id="menu-comunicados" class="hidden">
+        <div class="form-painel">
+          <h3>📨 Enviar Comunicado</h3>
+          <input
+            type="text"
+            id="comunicadoAssunto"
+            placeholder="Assunto"
+          /><textarea id="comunicadoMensagem" rows="3"></textarea
+          ><button class="btn-salvar" onclick="enviarComunicado()">
+            Enviar
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase.js"></script>
+    <script src="../assets/js/secretario.js"></script>
+    <script>
+      if (localStorage.getItem("secretario_logado") !== "true")
+        window.location.href = "login.html";
+    </script>
+    // Registrar Service Worker (PWA) if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/assets/js/sw.js') .then(registration => {
+    console.log('Service Worker registrado:', registration); }) .catch(error =>
+    { console.log('Erro ao registrar Service Worker:', error); }); }); }
+  </body>
+</html>

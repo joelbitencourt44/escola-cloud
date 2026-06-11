@@ -1,10 +1,45 @@
-escola-cloud/
+📁 escola-cloud/
 │
-├── index.html          (página inicial)
-├── login.html          (tela de login)
-├── dashboard-dono.html (seu painel supremo)
-├── style.css           (estilos)
-├── script.js           (código JavaScript)
+├── 📁 assets/
+│ ├── 📁 css/
+│ │ ├── style.css (estilos globais)
+│ │ ├── admin.css (estilos do painel dono)
+│ │ ├── diretor.css (estilos do diretor)
+│ │ ├── professor.css (estilos do professor)
+│ │ ├── secretario.css (estilos do secretário)
+│ │ ├── aluno.css (estilos do aluno)
+│ │ └── escola.css (estilos da página pública)
+│ │
+│ └── 📁 js/
+│ ├── supabase.js (conexão com Supabase - você já tem)
+│ ├── admin.js (lógica do dono)
+│ ├── diretor.js (lógica do diretor)
+│ ├── professor.js (lógica do professor)
+│ ├── secretario.js (lógica do secretário)
+│ ├── aluno.js (lógica do aluno)
+│ └── escola.js (lógica da página pública)
 │
-└── assets/
-    └── imagens/        (logo, fotos, etc.)
+├── 📁 admin/
+│ ├── login.html (login do dono)
+│ └── index.html (painel do dono)
+│
+├── 📁 diretor/
+│ ├── login.html (login do diretor)
+│ └── index.html (painel do diretor)
+│
+├── 📁 professor/
+│ ├── login.html (login do professor)
+│ └── index.html (painel do professor)
+│
+├── 📁 secretario/
+│ ├── login.html (login do secretário)
+│ └── index.html (painel do secretário)
+│
+├── 📁 aluno/
+│ ├── login.html (login do aluno)
+│ └── index.html (painel do aluno)
+│
+├── 📁 escola/
+│ └── index.html (página pública da escola)
+│
+└── index.html (página inicial - redireciona)

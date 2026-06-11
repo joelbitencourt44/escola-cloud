@@ -1,0 +1,69 @@
+/* ============================================
+   ESCOLA CLOUD - DIRETOR.CSS
+   Painel do Diretor
+   ============================================ */
+
+/* Dashboard do diretor */
+.diretor-dashboard {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.diretor-dashboard h3 {
+  color: white;
+}
+
+/* Cards específicos do diretor */
+.card-alunos {
+  border-top: 4px solid var(--success);
+}
+.card-professores {
+  border-top: 4px solid var(--info);
+}
+.card-financeiro {
+  border-top: 4px solid var(--warning);
+}
+.card-eventos {
+  border-top: 4px solid var(--primary);
+}
+
+/* Tabelas de gerenciamento */
+.tabela-professores th,
+.tabela-alunos th,
+.tabela-financeiro th {
+  background: var(--primary);
+  color: white;
+}
+
+/* Botões de ação rápidos */
+.btn-acao {
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: 0.7rem;
+  border-radius: var(--radius-sm);
+}
+
+/* Seção de recuperação paralela */
+.recuperacao-item {
+  background: var(--warning-light);
+  border-left: 4px solid var(--warning);
+  margin-bottom: var(--spacing-2);
+}
+
+/* Chat dos professores (supervisão) */
+.chat-supervisor {
+  background: var(--info-light);
+  border: 1px solid var(--info);
+}
+
+.chat-supervisor .chat-icon {
+  color: var(--info);
+}
+
+/* Log de ações */
+.log-item {
+  font-family: monospace;
+  font-size: 0.75rem;
+  padding: var(--spacing-2);
+  border-left: 3px solid var(--primary);
+  margin-bottom: var(--spacing-2);
+  background: var(--light-100);
+}

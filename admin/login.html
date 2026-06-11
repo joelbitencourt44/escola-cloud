@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Escola Cloud</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <style>
+      body {
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .login-card {
+        max-width: 400px;
+        width: 90%;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="login-card">
+        <div class="form-painel" style="text-align: center">
+          <div class="logo-mini" style="margin: 0 auto 20px">☁️</div>
+          <h2>Escola Cloud</h2>
+          <p>Painel Administrativo</p>
+
+          <div class="form-group" style="margin-top: 30px">
+            <input type="email" id="adminEmail" placeholder="E-mail" />
+          </div>
+          <div class="form-group">
+            <input type="password" id="adminSenha" placeholder="Senha" />
+          </div>
+          <button class="btn-salvar" id="btnLogin" style="width: 100%">
+            Entrar
+          </button>
+
+          <div style="margin-top: 20px; font-size: 12px; color: var(--gray)">
+            <p>Login padrão: admin@escolacloud.com / 123456</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase.js"></script>
+    <script>
+      document.getElementById("btnLogin").onclick = async () => {
+        const email = document.getElementById("adminEmail").value;
+        const senha = document.getElementById("adminSenha").value;
+
+        if (email === "admin@escolacloud.com" && senha === "123456") {
+          localStorage.setItem("admin_logado", "true");
+          window.location.href = "index.html";
+        } else {
+          alert("❌ E-mail ou senha incorretos");
+        }
+      };
+
+      if (localStorage.getItem("admin_logado") === "true") {
+        window.location.href = "index.html";
+      }
+    </script>
+    // Registrar Service Worker (PWA) if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/assets/js/sw.js') .then(registration => {
+    console.log('Service Worker registrado:', registration); }) .catch(error =>
+    { console.log('Erro ao registrar Service Worker:', error); }); }); }
+  </body>
+</html>

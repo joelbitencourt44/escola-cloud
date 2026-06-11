@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Diretor | Escola Cloud</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Escola Cloud" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-mini">🏫</div>
+        <div class="info-escola">
+          <h2 id="escolaNome">Carregando...</h2>
+          <p>Painel do Diretor</p>
+        </div>
+      </div>
+      <div class="user-area">
+        <span class="user-name" id="diretorNome">Carregando...</span>
+        <button class="btn-sair" onclick="logout()">Sair</button>
+      </div>
+    </div>
+
+    <div class="menu-container">
+      <div class="menu">
+        <button class="menu-btn active" data-menu="dashboard">
+          📊 Dashboard
+        </button>
+        <button class="menu-btn" data-menu="professores">👨‍🏫 Professores</button>
+        <button class="menu-btn" data-menu="alunos">👨‍🎓 Alunos</button>
+        <button class="menu-btn" data-menu="secretarios">📋 Secretários</button>
+        <button class="menu-btn" data-menu="notas">📝 Notas</button>
+        <button class="menu-btn" data-menu="financeiro">💰 Financeiro</button>
+        <button class="menu-btn" data-menu="atividades">📚 Atividades</button>
+        <button class="menu-btn" data-menu="comunicados">📨 Comunicados</button>
+        <button class="menu-btn" data-menu="enquetes">📊 Enquetes</button>
+        <button class="menu-btn" data-menu="reunioes">📅 Reuniões</button>
+        <button class="menu-btn" data-menu="calendario">📆 Calendário</button>
+        <button class="menu-btn" data-menu="galeria">📸 Galeria</button>
+        <button class="menu-btn" data-menu="mural">📢 Mural</button>
+        <button class="menu-btn" data-menu="grupos">💬 Grupos</button>
+        <button class="menu-btn" data-menu="biblioteca">📚 Biblioteca</button>
+        <button class="menu-btn" data-menu="delegar">🔑 Delegar</button>
+        <button class="menu-btn" data-menu="recuperacao">🔄 Recuperação</button>
+        <button class="menu-btn" data-menu="chats">💬 Chats</button>
+        <button class="menu-btn" data-menu="logs">📋 Logs</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- DASHBOARD -->
+      <div id="menu-dashboard">
+        <div class="card-dashboard">
+          <div class="card">
+            <h3 id="totalAlunos">0</h3>
+            <p>👨‍🎓 Alunos</p>
+          </div>
+          <div class="card">
+            <h3 id="totalProfessores">0</h3>
+            <p>👨‍🏫 Professores</p>
+          </div>
+          <div class="card">
+            <h3 id="totalSecretarios">0</h3>
+            <p>📋 Secretários</p>
+          </div>
+          <div class="card">
+            <h3 id="totalInadimplentes">0</h3>
+            <p>💰 Inadimplentes</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFESSORES -->
+      <div id="menu-professores" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Adicionar Professor</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Nome completo</label
+              ><input type="text" id="profNome" placeholder="Nome" />
+            </div>
+            <div class="form-group">
+              <label>E-mail</label
+              ><input type="email" id="profEmail" placeholder="E-mail" />
+            </div>
+            <div class="form-group">
+              <label>Disciplina</label
+              ><input
+                type="text"
+                id="profDisciplina"
+                placeholder="Disciplina"
+              />
+            </div>
+            <div class="form-group">
+              <label>Turmas que leciona</label
+              ><input
+                type="text"
+                id="profTurmas"
+                placeholder="Ex: 5º A, 5º B"
+              />
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="adicionarProfessor()">
+            Salvar Professor
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Professores Cadastrados</h3>
+          <div id="listaProfessores"></div>
+        </div>
+      </div>
+
+      <!-- ALUNOS -->
+      <div id="menu-alunos" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Adicionar Aluno</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Nome completo</label
+              ><input type="text" id="alunoNome" placeholder="Nome" />
+            </div>
+            <div class="form-group">
+              <label>E-mail</label
+              ><input type="email" id="alunoEmail" placeholder="E-mail" />
+            </div>
+            <div class="form-group">
+              <label>Série/Turma</label
+              ><input type="text" id="alunoTurma" placeholder="Ex: 5º Ano A" />
+            </div>
+            <div class="form-group">
+              <label>Responsável</label
+              ><input
+                type="text"
+                id="alunoResponsavel"
+                placeholder="Nome do responsável"
+              />
+            </div>
+            <div class="form-group">
+              <label>WhatsApp responsável</label
+              ><input
+                type="text"
+                id="alunoWhatsapp"
+                placeholder="(11) 99999-9999"
+              />
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="adicionarAluno()">
+            Salvar Aluno
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Alunos Cadastrados</h3>
+          <div id="listaAlunos"></div>
+        </div>
+      </div>
+
+      <!-- SECRETÁRIOS -->
+      <div id="menu-secretarios" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Adicionar Secretário</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Nome completo</label
+              ><input type="text" id="secNome" placeholder="Nome" />
+            </div>
+            <div class="form-group">
+              <label>E-mail</label
+              ><input type="email" id="secEmail" placeholder="E-mail" />
+            </div>
+            <div class="form-group">
+              <label>Função</label
+              ><input type="text" id="secFuncao" placeholder="Função" />
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="adicionarSecretario()">
+            Salvar Secretário
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Secretários Cadastrados</h3>
+          <div id="listaSecretarios"></div>
+        </div>
+      </div>
+
+      <!-- NOTAS -->
+      <div id="menu-notas" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Lançar Nota</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Aluno</label
+              ><select id="notaAluno"></select>
+            </div>
+            <div class="form-group">
+              <label>Disciplina</label
+              ><select id="notaDisciplina">
+                <option>Matemática</option>
+                <option>Português</option>
+                <option>Ciências</option>
+                <option>História</option>
+                <option>Geografia</option>
+                <option>Inglês</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Bimestre</label
+              ><select id="notaBimestre">
+                <option>1º Bimestre</option>
+                <option>2º Bimestre</option>
+                <option>3º Bimestre</option>
+                <option>4º Bimestre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Nota (0 a 10)</label
+              ><input
+                type="number"
+                id="notaValor"
+                step="0.1"
+                min="0"
+                max="10"
+                placeholder="Nota"
+              />
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="lancarNota()">Lançar Nota</button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Notas Lançadas</h3>
+          <div id="listaNotas"></div>
+        </div>
+      </div>
+
+      <!-- FINANCEIRO -->
+      <div id="menu-financeiro" class="hidden">
+        <div class="form-painel">
+          <h3>💰 Registrar Pagamento</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Aluno</label
+              ><select id="pagamentoAluno"></select>
+            </div>
+            <div class="form-group">
+              <label>Desconto (%)</label
+              ><input
+                type="number"
+                id="pagamentoDesconto"
+                step="1"
+                min="0"
+                max="100"
+                placeholder="0"
+              />
+            </div>
+            <div class="form-group">
+              <label>Valor pago</label
+              ><input
+                type="number"
+                id="pagamentoValor"
+                step="0.01"
+                placeholder="R$ 0,00"
+              />
+            </div>
+            <div class="form-group">
+              <label>Data pagamento</label
+              ><input type="date" id="pagamentoData" />
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="registrarPagamento()">
+            Registrar Pagamento
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Situação Financeira dos Alunos</h3>
+          <div id="listaFinanceiro"></div>
+        </div>
+      </div>
+
+      <!-- ATIVIDADES -->
+      <div id="menu-atividades" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Criar Atividade</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Título</label
+              ><input
+                type="text"
+                id="ativTitulo"
+                placeholder="Título da atividade"
+              />
+            </div>
+            <div class="form-group">
+              <label>Data de entrega</label><input type="date" id="ativData" />
+            </div>
+            <div class="form-group">
+              <label>Descrição</label
+              ><textarea
+                id="ativDescricao"
+                rows="2"
+                placeholder="Descrição da atividade"
+              ></textarea>
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="criarAtividade()">
+            Criar Atividade
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Atividades Criadas</h3>
+          <div id="listaAtividades"></div>
+        </div>
+      </div>
+
+      <!-- COMUNICADOS -->
+      <div id="menu-comunicados" class="hidden">
+        <div class="form-painel">
+          <h3>📨 Enviar Comunicado</h3>
+          <div class="form-group">
+            <label>Assunto</label
+            ><input type="text" id="comunicadoAssunto" placeholder="Assunto" />
+          </div>
+          <div class="form-group">
+            <label>Mensagem</label
+            ><textarea
+              id="comunicadoMensagem"
+              rows="3"
+              placeholder="Digite a mensagem..."
+            ></textarea>
+          </div>
+          <button class="btn-salvar" onclick="enviarComunicado()">
+            Enviar Comunicado
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Histórico de Comunicados</h3>
+          <div id="listaComunicados"></div>
+        </div>
+      </div>
+
+      <!-- ENQUETES -->
+      <div id="menu-enquetes" class="hidden">
+        <div class="form-painel">
+          <h3>📊 Criar Enquete</h3>
+          <div class="form-group">
+            <label>Pergunta</label
+            ><input
+              type="text"
+              id="enquetePergunta"
+              placeholder="Ex: Qual a melhor data para a festa?"
+            />
+          </div>
+          <div class="form-group">
+            <label>Opções (separar por vírgula)</label
+            ><input
+              type="text"
+              id="enqueteOpcoes"
+              placeholder="Opção A, Opção B, Opção C"
+            />
+          </div>
+          <button class="btn-salvar" onclick="criarEnquete()">
+            Criar Enquete
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Enquetes Ativas</h3>
+          <div id="listaEnquetes"></div>
+        </div>
+      </div>
+
+      <!-- REUNIÕES -->
+      <div id="menu-reunioes" class="hidden">
+        <div class="form-painel">
+          <h3>📅 Agendar Reunião</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Título</label
+              ><input
+                type="text"
+                id="reuniaoTitulo"
+                placeholder="Título da reunião"
+              />
+            </div>
+            <div class="form-group">
+              <label>Data</label><input type="date" id="reuniaoData" />
+            </div>
+            <div class="form-group">
+              <label>Horário</label><input type="time" id="reuniaoHora" />
+            </div>
+            <div class="form-group">
+              <label>Local</label
+              ><input type="text" id="reuniaoLocal" placeholder="Local" />
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="agendarReuniao()">
+            Agendar Reunião
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Reuniões Agendadas</h3>
+          <div id="listaReunioes"></div>
+        </div>
+      </div>
+
+      <!-- CALENDÁRIO -->
+      <div id="menu-calendario" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Adicionar Evento</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Data</label><input type="date" id="eventoData" />
+            </div>
+            <div class="form-group">
+              <label>Evento</label
+              ><input
+                type="text"
+                id="eventoTitulo"
+                placeholder="Ex: Prova de Matemática"
+              />
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="adicionarEvento()">
+            Salvar Evento
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Eventos do Calendário</h3>
+          <div id="listaEventos"></div>
+        </div>
+      </div>
+
+      <!-- GALERIA -->
+      <div id="menu-galeria" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Adicionar Foto</h3>
+          <div class="form-group">
+            <label>Nome da foto</label
+            ><input type="text" id="fotoNome" placeholder="Ex: Festa Junina" />
+          </div>
+          <button class="btn-salvar" onclick="adicionarFoto()">
+            Adicionar Foto
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📸 Fotos da Galeria</h3>
+          <div id="listaFotos"></div>
+        </div>
+      </div>
+
+      <!-- MURAL -->
+      <div id="menu-mural" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Adicionar Recado</h3>
+          <div class="form-group">
+            <label>Recado</label
+            ><textarea
+              id="recadoTexto"
+              rows="3"
+              placeholder="Digite o recado..."
+            ></textarea>
+          </div>
+          <button class="btn-salvar" onclick="adicionarRecado()">
+            Adicionar Recado
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📢 Recados do Mural</h3>
+          <div id="listaRecados"></div>
+        </div>
+      </div>
+
+      <!-- GRUPOS WHATSAPP -->
+      <div id="menu-grupos" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Adicionar Grupo WhatsApp</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Nome do grupo</label
+              ><input
+                type="text"
+                id="grupoNome"
+                placeholder="Ex: Grupo de Pais"
+              />
+            </div>
+            <div class="form-group">
+              <label>Link do convite</label
+              ><input
+                type="text"
+                id="grupoLink"
+                placeholder="https://chat.whatsapp.com/..."
+              />
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="adicionarGrupo()">
+            Adicionar Grupo
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>💬 Grupos WhatsApp</h3>
+          <div id="listaGrupos"></div>
+        </div>
+      </div>
+
+      <!-- BIBLIOTECA -->
+      <div id="menu-biblioteca" class="hidden">
+        <div class="form-painel">
+          <h3>📚 Adicionar Conteúdo</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Tipo</label
+              ><select id="bibTipo">
+                <option>PDF</option>
+                <option>Link</option>
+                <option>Vídeo</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Título</label
+              ><input type="text" id="bibTitulo" placeholder="Título" />
+            </div>
+            <div class="form-group">
+              <label>URL/Link</label
+              ><input type="text" id="bibUrl" placeholder="https://..." />
+            </div>
+            <div class="form-group">
+              <label>Categoria</label
+              ><input
+                type="text"
+                id="bibCategoria"
+                placeholder="Matemática, Português..."
+              />
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="adicionarConteudo()">
+            Adicionar Conteúdo
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📚 Biblioteca Digital</h3>
+          <div id="listaBiblioteca"></div>
+        </div>
+      </div>
+
+      <!-- DELEGAR PERMISSÕES -->
+      <div id="menu-delegar" class="hidden">
+        <div class="form-painel">
+          <h3>🔑 Delegar Permissão</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Usuário</label
+              ><select id="delegarUsuario"></select>
+            </div>
+            <div class="form-group">
+              <label>Permissão</label
+              ><select id="delegarPermissao">
+                <option>Lançar notas</option>
+                <option>Editar notas</option>
+                <option>Criar atividades</option>
+                <option>Adicionar eventos</option>
+                <option>Gerenciar alunos</option>
+                <option>Ver financeiro</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="delegarPermissao()">
+            Delegar Permissão
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Permissões Delegadas</h3>
+          <div id="listaPermissoes"></div>
+        </div>
+      </div>
+
+      <!-- RECUPERAÇÃO PARALELA -->
+      <div id="menu-recuperacao" class="hidden">
+        <div class="tabela-container">
+          <h3>🔄 Alunos em Recuperação</h3>
+          <div id="listaRecuperacao"></div>
+        </div>
+      </div>
+
+      <!-- CHATS DOS PROFESSORES -->
+      <div id="menu-chats" class="hidden">
+        <div class="tabela-container">
+          <h3>💬 Chats dos Professores (Supervisão)</h3>
+          <div id="listaChats"></div>
+        </div>
+      </div>
+
+      <!-- LOGS -->
+      <div id="menu-logs" class="hidden">
+        <div class="tabela-container">
+          <h3>📋 Log de Ações do Sistema</h3>
+          <div id="listaLags"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase.js"></script>
+    <script src="../assets/js/diretor.js"></script>
+    <script>
+      if (localStorage.getItem("diretor_logado") !== "true") {
+        window.location.href = "login.html";
+      }
+    </script>
+    // Registrar Service Worker (PWA) if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/assets/js/sw.js') .then(registration => {
+    console.log('Service Worker registrado:', registration); }) .catch(error =>
+    { console.log('Erro ao registrar Service Worker:', error); }); }); }
+  </body>
+</html>

@@ -1,0 +1,87 @@
+/* ============================================
+   ESCOLA CLOUD - PROFESSOR.CSS
+   Painel do Professor
+   ============================================ */
+
+/* Dashboard do professor */
+.professor-dashboard {
+  background: linear-gradient(135deg, var(--info) 0%, var(--primary) 100%);
+}
+
+.professor-dashboard h3 {
+  color: white;
+}
+
+/* Minhas turmas */
+.turma-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-3);
+  border: 1px solid var(--border);
+  transition: transform var(--transition);
+}
+
+.turma-card:hover {
+  transform: translateX(4px);
+  border-left: 4px solid var(--primary);
+}
+
+.turma-nome {
+  font-weight: 600;
+  color: var(--black);
+}
+
+.turma-info {
+  font-size: 0.75rem;
+  color: var(--gray);
+  margin-top: var(--spacing-1);
+}
+
+/* Lista de alunos da turma */
+.aluno-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.aluno-nota {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Atividades criadas */
+.atividade-card {
+  background: var(--light-100);
+  border-radius: var(--radius);
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+}
+
+.atividade-titulo {
+  font-weight: 600;
+}
+
+.atividade-data {
+  font-size: 0.7rem;
+  color: var(--gray);
+}
+
+/* Lançamento de notas */
+.lancamento-nota {
+  background: var(--success-light);
+  border: 1px solid var(--success);
+  border-radius: var(--radius);
+  padding: var(--spacing-3);
+}
+
+/* Feedback dos alunos */
+.feedback-item {
+  background: var(--info-light);
+  border-left: 4px solid var(--info);
+  padding: var(--spacing-3);
+  margin-bottom: var(--spacing-2);
+  border-radius: var(--radius);
+}

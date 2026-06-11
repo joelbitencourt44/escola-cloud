@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Painel do Professor | Escola Cloud</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Escola Cloud" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-mini">👨‍🏫</div>
+        <div class="info-escola">
+          <h2 id="escolaNome">Carregando...</h2>
+          <p>Painel do Professor</p>
+        </div>
+      </div>
+      <div class="user-area">
+        <span class="user-name" id="professorNome">Carregando...</span>
+        <button class="btn-sair" onclick="logout()">Sair</button>
+      </div>
+    </div>
+
+    <div class="menu-container">
+      <div class="menu">
+        <button class="menu-btn active" data-menu="dashboard">
+          📊 Dashboard
+        </button>
+        <button class="menu-btn" data-menu="minhas-turmas">
+          👨‍🏫 Minhas Turmas
+        </button>
+        <button class="menu-btn" data-menu="atividades">📚 Atividades</button>
+        <button class="menu-btn" data-menu="notas">📝 Notas</button>
+        <button class="menu-btn" data-menu="comunicados">📨 Comunicados</button>
+        <button class="menu-btn" data-menu="calendario">📆 Calendário</button>
+        <button class="menu-btn" data-menu="feedback">💬 Feedback</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div id="menu-dashboard">
+        <div class="card-dashboard">
+          <div class="card">
+            <h3 id="totalAlunos">0</h3>
+            <p>👨‍🎓 Meus Alunos</p>
+          </div>
+          <div class="card">
+            <h3 id="totalTurmas">0</h3>
+            <p>🏫 Minhas Turmas</p>
+          </div>
+          <div class="card">
+            <h3 id="totalAtividades">0</h3>
+            <p>📚 Atividades</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="menu-minhas-turmas" class="hidden">
+        <div class="tabela-container">
+          <h3>🏫 Minhas Turmas</h3>
+          <div id="listaTurmas"></div>
+        </div>
+      </div>
+
+      <div id="menu-atividades" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Criar Nova Atividade</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Título</label
+              ><input type="text" id="ativTitulo" placeholder="Título" />
+            </div>
+            <div class="form-group">
+              <label>Turma</label
+              ><select id="ativTurma"></select>
+            </div>
+            <div class="form-group">
+              <label>Data de entrega</label><input type="date" id="ativData" />
+            </div>
+            <div class="form-group">
+              <label>Tipo</label
+              ><select id="ativTipo">
+                <option>PDF</option>
+                <option>Perguntas</option>
+                <option>Misto</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Descrição</label
+            ><textarea
+              id="ativDescricao"
+              rows="3"
+              placeholder="Descrição da atividade"
+            ></textarea>
+          </div>
+          <button class="btn-salvar" onclick="criarAtividade()">
+            Criar Atividade
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Minhas Atividades</h3>
+          <div id="listaAtividades"></div>
+        </div>
+      </div>
+
+      <div id="menu-notas" class="hidden">
+        <div class="form-painel">
+          <h3>➕ Lançar Nota</h3>
+          <div class="grid-2">
+            <div class="form-group">
+              <label>Turma</label
+              ><select id="notaTurma"></select>
+            </div>
+            <div class="form-group">
+              <label>Aluno</label
+              ><select id="notaAluno"></select>
+            </div>
+            <div class="form-group">
+              <label>Disciplina</label
+              ><input
+                type="text"
+                id="notaDisciplina"
+                placeholder="Disciplina"
+              />
+            </div>
+            <div class="form-group">
+              <label>Nota</label
+              ><input
+                type="number"
+                id="notaValor"
+                step="0.1"
+                min="0"
+                max="10"
+              />
+            </div>
+          </div>
+          <button class="btn-salvar" onclick="lancarNota()">Lançar Nota</button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Notas Lançadas</h3>
+          <div id="listaNotas"></div>
+        </div>
+      </div>
+
+      <div id="menu-comunicados" class="hidden">
+        <div class="form-painel">
+          <h3>📨 Enviar Comunicado</h3>
+          <div class="form-group">
+            <label>Para</label
+            ><select id="comunicadoPara">
+              <option>Minha turma</option>
+              <option>Diretor</option>
+              <option>Secretário</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Assunto</label><input type="text" id="comunicadoAssunto" />
+          </div>
+          <div class="form-group">
+            <label>Mensagem</label
+            ><textarea id="comunicadoMensagem" rows="3"></textarea>
+          </div>
+          <button class="btn-salvar" onclick="enviarComunicado()">
+            Enviar
+          </button>
+        </div>
+        <div class="tabela-container">
+          <h3>📋 Meus Comunicados</h3>
+          <div id="listaComunicados"></div>
+        </div>
+      </div>
+
+      <div id="menu-calendario" class="hidden">
+        <div class="tabela-container">
+          <h3>📆 Calendário Escolar</h3>
+          <div id="listaEventos"></div>
+        </div>
+      </div>
+
+      <div id="menu-feedback" class="hidden">
+        <div class="tabela-container">
+          <h3>💬 Feedback dos Alunos</h3>
+          <div id="listaFeedback"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase.js"></script>
+    <script src="../assets/js/professor.js"></script>
+    <script>
+      if (localStorage.getItem("professor_logado") !== "true") {
+        window.location.href = "login.html";
+      }
+    </script>
+    // Registrar Service Worker (PWA) if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/assets/js/sw.js') .then(registration => {
+    console.log('Service Worker registrado:', registration); }) .catch(error =>
+    { console.log('Erro ao registrar Service Worker:', error); }); }); }
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal do Aluno | Escola Cloud</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Escola Cloud" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-mini">👨‍🎓</div>
+        <div class="info-escola">
+          <h2 id="escolaNome">Carregando...</h2>
+          <p>Portal do Aluno</p>
+        </div>
+      </div>
+      <div class="user-area">
+        <span class="user-name" id="alunoNome">Carregando...</span
+        ><button class="btn-sair" onclick="logout()">Sair</button>
+      </div>
+    </div>
+    <div class="menu-container">
+      <div class="menu">
+        <button class="menu-btn active" data-menu="dashboard">📊 Início</button>
+        <button class="menu-btn" data-menu="atividades">📚 Atividades</button>
+        <button class="menu-btn" data-menu="notas">📝 Notas</button>
+        <button class="menu-btn" data-menu="financeiro">💰 Financeiro</button>
+        <button class="menu-btn" data-menu="feedback">💬 Feedback</button>
+        <button class="menu-btn" data-menu="calendario">📅 Calendário</button>
+      </div>
+    </div>
+    <div class="content">
+      <div id="menu-dashboard">
+        <div class="card-dashboard">
+          <div class="card">
+            <h3 id="totalAtividades">0</h3>
+            <p>📚 Atividades Pendentes</p>
+          </div>
+          <div class="card">
+            <h3 id="mediaGeral">0</h3>
+            <p>📊 Média Geral</p>
+          </div>
+        </div>
+      </div>
+      <div id="menu-atividades" class="hidden">
+        <div class="tabela-container">
+          <h3>📚 Minhas Atividades</h3>
+          <div id="listaAtividades"></div>
+        </div>
+      </div>
+      <div id="menu-notas" class="hidden">
+        <div class="tabela-container">
+          <h3>📝 Minhas Notas</h3>
+          <div id="listaNotas"></div>
+        </div>
+      </div>
+      <div id="menu-financeiro" class="hidden">
+        <div class="tabela-container">
+          <h3>💰 Extrato Financeiro</h3>
+          <div id="listaFinanceiro"></div>
+        </div>
+      </div>
+      <div id="menu-feedback" class="hidden">
+        <div class="form-painel">
+          <h3>💬 Enviar Feedback</h3>
+          <select id="feedbackDestino">
+            <option>Professor</option>
+            <option>Diretor</option></select
+          ><input
+            type="text"
+            id="feedbackAssunto"
+            placeholder="Assunto"
+          /><textarea id="feedbackMensagem" rows="3"></textarea
+          ><button class="btn-salvar" onclick="enviarFeedback()">Enviar</button>
+        </div>
+      </div>
+      <div id="menu-calendario" class="hidden">
+        <div class="tabela-container">
+          <h3>📅 Calendário Escolar</h3>
+          <div id="listaEventos"></div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase.js"></script>
+    <script src="../assets/js/aluno.js"></script>
+    <script>
+      if (localStorage.getItem("aluno_logado") !== "true")
+        window.location.href = "login.html";
+    </script>
+    // Registrar Service Worker (PWA) if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/assets/js/sw.js') .then(registration => {
+    console.log('Service Worker registrado:', registration); }) .catch(error =>
+    { console.log('Erro ao registrar Service Worker:', error); }); }); }
+  </body>
+</html>

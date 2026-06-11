@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Escola Cloud</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Escola Cloud" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-mini">☁️</div>
+        <div class="info-escola">
+          <h2>ESCOLA CLOUD</h2>
+          <p>Painel Administrativo</p>
+        </div>
+      </div>
+      <div class="user-area">
+        <span class="user-name">Admin</span>
+        <button class="btn-sair" onclick="logout()">Sair</button>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card-dashboard">
+        <div class="card">
+          <h3 id="totalEscolas">0</h3>
+          <p>🏫 Escolas</p>
+        </div>
+        <div class="card">
+          <h3 id="totalAlunos">0</h3>
+          <p>👨‍🎓 Alunos</p>
+        </div>
+      </div>
+
+      <div class="form-painel">
+        <h3>➕ CRIAR NOVA ESCOLA</h3>
+        <div class="grid-2">
+          <div class="form-group">
+            <label>Nome da escola:</label
+            ><input
+              type="text"
+              id="escolaNome"
+              placeholder="Ex: Aquarela do Saber"
+            />
+          </div>
+          <div class="form-group">
+            <label>Link único:</label
+            ><input type="text" id="escolaLink" placeholder="aquarela" /><small>
+              .escolacloud.com</small
+            >
+          </div>
+          <div class="form-group">
+            <label>E-mail do diretor:</label
+            ><input
+              type="email"
+              id="diretorEmail"
+              placeholder="diretor@escola.com"
+            />
+          </div>
+        </div>
+        <button class="btn-salvar" id="btnCriarEscola">🚀 CRIAR ESCOLA</button>
+      </div>
+
+      <div class="tabela-container">
+        <h3>📋 TODAS AS ESCOLAS</h3>
+        <table style="width: 100%">
+          <thead>
+            <tr>
+              <th>Escola</th>
+              <th>Link</th>
+              <th>Diretor</th>
+              <th>Alunos</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="listaEscolas"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="modalEscola" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitulo">📋 Escola</h2>
+          <span class="close" id="closeModal">&times;</span>
+        </div>
+        <div id="modalInfo"></div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase.js"></script>
+    <script src="../assets/js/admin.js"></script>
+    <script>
+      if (localStorage.getItem("admin_logado") !== "true") {
+        window.location.href = "login.html";
+      }
+    </script>
+    // Registrar Service Worker (PWA) if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/assets/js/sw.js') .then(registration => {
+    console.log('Service Worker registrado:', registration); }) .catch(error =>
+    { console.log('Erro ao registrar Service Worker:', error); }); }); }
+  </body>
+</html>

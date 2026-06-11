@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="tituloPagina">Escola Cloud</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Escola Cloud" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Escola Cloud" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
+    <style>
+      .btn-login {
+        position: absolute;
+        top: 25px;
+        right: 20px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .btn-editar {
+        background: #f0f0f0;
+        border: 1px solid var(--border);
+        padding: 8px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 10px;
+        font-size: 12px;
+        display: none;
+      }
+      .perfil-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap;
+      }
+      .perfil-btn {
+        flex: 1;
+        padding: 10px;
+        background: var(--light);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .perfil-btn.active {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+      .hidden {
+        display: none;
+      }
+      @media (max-width: 768px) {
+        .btn-login {
+          position: static;
+          margin-top: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo-area">
+        <div class="logo-mini" id="logoEscola">🏫</div>
+        <div class="info-escola">
+          <h2 id="nomeEscola">Carregando...</h2>
+          <p>Escola Conectada</p>
+        </div>
+        <button class="btn-editar" id="btnEditar">✏️ Editar Escola</button>
+      </div>
+      <button class="btn-login" id="btnLogin">🔐 LOGIN</button>
+    </div>
+
+    <div class="container">
+      <!-- GALERIA -->
+      <div class="form-painel">
+        <h2>📸 Galeria de Fotos</h2>
+        <div class="galeria" id="galeriaContainer"></div>
+      </div>
+
+      <!-- CALENDÁRIO -->
+      <div class="form-painel">
+        <h2>📅 Calendário Escolar</h2>
+        <table class="calendario-grid" id="calendario">
+          <thead>
+            <tr>
+              <th>DOM</th>
+              <th>SEG</th>
+              <th>TER</th>
+              <th>QUA</th>
+              <th>QUI</th>
+              <th>SEX</th>
+              <th>SÁB</th>
+            </tr>
+          </thead>
+          <tbody id="calendarioBody"></tbody>
+        </table>
+        <div id="listaEventos" style="margin-top: 15px"></div>
+      </div>
+
+      <!-- MURAL -->
+      <div class="form-painel">
+        <h2>📢 Mural de Recados</h2>
+        <div id="muralContainer"></div>
+      </div>
+
+      <!-- GRUPOS WHATSAPP -->
+      <div class="form-painel">
+        <h2>💬 Grupos WhatsApp</h2>
+        <div id="gruposContainer"></div>
+      </div>
+    </div>
+
+    <!-- MODAL LOGIN -->
+    <div id="modalLogin" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>🔐 FAZER LOGIN</h3>
+          <span class="close" id="closeLogin">&times;</span>
+        </div>
+        <div class="perfil-buttons">
+          <button class="perfil-btn" data-perfil="diretor">👔 Diretor</button>
+          <button class="perfil-btn" data-perfil="professor">
+            👨‍🏫 Professor
+          </button>
+          <button class="perfil-btn" data-perfil="secretario">
+            📋 Secretário
+          </button>
+          <button class="perfil-btn" data-perfil="aluno">👨‍🎓 Aluno</button>
+        </div>
+        <div id="form-diretor" class="hidden">
+          <div class="form-group">
+            <input type="email" id="diretorEmail" placeholder="E-mail" />
+          </div>
+          <div class="form-group">
+            <input type="password" id="diretorSenha" placeholder="Senha" />
+          </div>
+          <button class="btn-salvar" id="btnLoginDiretor">Entrar</button>
+        </div>
+        <div id="form-professor" class="hidden">
+          <div class="form-group">
+            <input type="email" id="professorEmail" placeholder="E-mail" />
+          </div>
+          <div class="form-group">
+            <input type="password" id="professorSenha" placeholder="Senha" />
+          </div>
+          <button class="btn-salvar" id="btnLoginProfessor">Entrar</button>
+        </div>
+        <div id="form-secretario" class="hidden">
+          <div class="form-group">
+            <input type="email" id="secretarioEmail" placeholder="E-mail" />
+          </div>
+          <div class="form-group">
+            <input type="password" id="secretarioSenha" placeholder="Senha" />
+          </div>
+          <button class="btn-salvar" id="btnLoginSecretario">Entrar</button>
+        </div>
+        <div id="form-aluno">
+          <div class="form-group">
+            <input
+              type="text"
+              id="alunoEmail"
+              placeholder="Matrícula ou E-mail"
+            />
+          </div>
+          <div class="form-group">
+            <input type="password" id="alunoSenha" placeholder="Senha" />
+          </div>
+          <button class="btn-salvar" id="btnLoginAluno">Entrar</button>
+        </div>
+        <div style="margin-top: 15px; text-align: center">
+          <a href="#" id="esqueciSenha">Esqueci minha senha</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL EDITAR ESCOLA -->
+    <div id="modalEditar" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>✏️ Editar Escola</h3>
+          <span class="close" id="closeEditar">&times;</span>
+        </div>
+        <div class="form-group">
+          <label>Logo da escola:</label
+          ><input type="file" id="logoInput" accept="image/*" />
+        </div>
+        <div class="form-group">
+          <label>Nome da escola:</label><input type="text" id="nomeInput" />
+        </div>
+        <button class="btn-salvar" id="btnSalvarEdicao">Salvar</button>
+      </div>
+    </div>
+
+    <div class="chatbot" id="chatbot"><span>💬</span></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase.js"></script>
+    <script src="../assets/js/escola.js"></script>
+    // Registrar Service Worker (PWA) if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/assets/js/sw.js') .then(registration => {
+    console.log('Service Worker registrado:', registration); }) .catch(error =>
+    { console.log('Erro ao registrar Service Worker:', error); }); }); }
+  </body>
+</html>

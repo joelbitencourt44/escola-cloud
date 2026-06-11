@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aluno | Escola Cloud</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <style>
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+      .login-card {
+        max-width: 400px;
+        width: 90%;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="login-card">
+        <div class="form-painel" style="text-align: center">
+          <div class="logo-mini" style="margin: 0 auto 20px">👨‍🎓</div>
+          <h2>Área do Aluno</h2>
+          <p>Acesse seu portal</p>
+          <div class="form-group" style="margin-top: 30px">
+            <input
+              type="text"
+              id="alunoEmail"
+              placeholder="Matrícula ou E-mail"
+            />
+          </div>
+          <div class="form-group">
+            <input type="password" id="alunoSenha" placeholder="Senha" />
+          </div>
+          <button class="btn-salvar" id="btnLogin" style="width: 100%">
+            Entrar
+          </button>
+          <div style="margin-top: 15px">
+            <a href="../escola/index.html">← Voltar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../assets/js/supabase.js"></script>
+    <script>
+      document.getElementById("btnLogin").onclick = async () => {
+        const email = document.getElementById("alunoEmail").value;
+        const senha = document.getElementById("alunoSenha").value;
+        const { data, error } = await supabase.auth.signInWithPassword({
+          email,
+          password: senha,
+        });
+        if (error) {
+          alert("E-mail ou senha incorretos");
+          return;
+        }
+        const { data: usuario } = await supabase
+          .from("usuarios")
+          .select("perfil")
+          .eq("id", data.user.id)
+          .single();
+        if (usuario.perfil !== "aluno") {
+          alert("Acesso negado");
+          await supabase.auth.signOut();
+          return;
+        }
+        localStorage.setItem("aluno_logado", "true");
+        window.location.href = "index.html";
+      };
+    </script>
+    // Registrar Service Worker (PWA) if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/assets/js/sw.js') .then(registration => {
+    console.log('Service Worker registrado:', registration); }) .catch(error =>
+    { console.log('Erro ao registrar Service Worker:', error); }); }); }
+  </body>
+</html>

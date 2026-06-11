@@ -2,76 +2,93 @@
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Escola Cloud</title>
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        background: white;
+        border-radius: 20px;
+        padding: 50px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      }
+      .logo {
+        font-size: 60px;
+        margin-bottom: 20px;
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+      }
+      p {
+        color: #666;
+        margin-bottom: 30px;
+      }
+      .btn {
+        display: block;
+        background: #667eea;
+        color: white;
+        text-decoration: none;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        font-weight: bold;
+        transition: transform 0.3s;
+      }
+      .btn:hover {
+        transform: scale(1.02);
+      }
+      .btn-admin {
+        background: #333;
+      }
+      hr {
+        margin: 20px 0;
+        border-color: #eee;
+      }
+    </style>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#667eea" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Escola Cloud" />
+    <link rel="apple-touch-icon" href="/assets/icons/icon-192.png" />
   </head>
   <body>
     <div class="container">
-      <div class="header">
-        <img
-          src="assets/imagens/logo-padrao.png"
-          alt="Logo"
-          class="logo"
-          id="logo-escola"
-        />
-        <h1 id="nome-escola">Escola Cloud</h1>
-        <p class="slogan">Sistema de Gestão Escolar</p>
-      </div>
+      <div class="logo">☁️</div>
+      <h1>Escola Cloud</h1>
+      <p>Sistema de Gestão Escolar</p>
 
-      <div class="login-area">
-        <button class="btn-login" onclick="window.location.href = 'login.html'">
-          🔐 FAZER LOGIN
-        </button>
-      </div>
+      <a href="escola/index.html" class="btn">🏫 MINHA ESCOLA</a>
+      <a href="admin/login.html" class="btn btn-admin">☁️ ESCOLA CLOUD</a>
 
-      <!-- Galeria de Fotos -->
-      <div class="secao">
-        <h2>📸 Galeria de Fotos</h2>
-        <div class="galeria">
-          <div class="foto">📷 Foto 1</div>
-          <div class="foto">📷 Foto 2</div>
-          <div class="foto">📷 Foto 3</div>
-          <div class="foto">📷 Foto 4</div>
-          <div class="foto">📷 Foto 5</div>
-        </div>
-      </div>
-
-      <!-- Calendário -->
-      <div class="secao">
-        <h2>📅 Calendário</h2>
-        <div class="calendario">
-          <p>📌 20/08 - Prova de Matemática</p>
-          <p>📌 25/08 - Festa da Primavera</p>
-          <p>📌 30/08 - Reunião de pais</p>
-        </div>
-      </div>
-
-      <!-- Mural de Recados -->
-      <div class="secao">
-        <h2>📢 Mural de Recados</h2>
-        <div class="mural">
-          <p>📌 15/08 - Matrículas abertas para 2027</p>
-          <p>⚠️ 10/08 - Manutenção dia 20/08</p>
-        </div>
-      </div>
-
-      <!-- Grupos WhatsApp -->
-      <div class="secao">
-        <h2>💬 Grupos WhatsApp</h2>
-        <div class="grupos">
-          <p>📱 Grupo de Pais - <a href="#">Entrar</a></p>
-          <p>📱 Grupo da Turma 5º Ano - <a href="#">Entrar</a></p>
-        </div>
-      </div>
+      <hr />
+      <small style="color: #999"
+        >© 2026 Escola Cloud - Todos os direitos reservados</small
+      >
     </div>
-
-    <!-- Chatbot -->
-    <div class="chatbot" onclick="alert('Chatbot em desenvolvimento')">💬</div>
-
-    <script src="script.js"></script>
+    // Registrar Service Worker (PWA) if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/assets/js/sw.js') .then(registration => {
+    console.log('Service Worker registrado:', registration); }) .catch(error =>
+    { console.log('Erro ao registrar Service Worker:', error); }); }); }
   </body>
 </html>

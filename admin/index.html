@@ -107,10 +107,5 @@
         window.location.href = "login.html";
       }
     </script>
-    // Registrar Service Worker (PWA) if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/assets/js/sw.js') .then(registration => {
-    console.log('Service Worker registrado:', registration); }) .catch(error =>
-    { console.log('Erro ao registrar Service Worker:', error); }); }); }
   </body>
 </html>
